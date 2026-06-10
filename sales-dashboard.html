@@ -5,73 +5,57 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>活力go分销看板</title>
 <style>
+  /* ══════════════════════════════════════════════════════════
+   * LITTA B端 Design Token — 强制约束
+   *
+   * Typography 只允许 6 个字号（PingFang SC / DINCond）:
+   *   40px  Headline Large     Number Headline Large
+   *   36px  Headline Medium    Number Headline Medium
+   *   32px  Title Large        Number Title Large
+   *   28px  Body Large         Number Body Large
+   *   24px  Body Medium        Number Body Medium
+   *   20px  Label Small        Number Body Small
+   *
+   * 禁止使用以上 6 个值以外的字号。
+   * ══════════════════════════════════════════════════════════ */
+
   :root {
-    /* ── LITTA B端 Design Token ──────────────────────────
-     * Brand
-     * sys/color/Primary            #1890FF
-     * sys/color/Outline-Primary    #8BC7FF
-     * sys/color/Primary Container  #F6FBFF
-     *
-     * Functional
-     * sys/color/Success            #00C332
-     * sys/color/Success Container  #E5F9E9
-     * sys/color/Error              #F02525
-     * sys/color/Error Container    #FEE8E6
-     *
-     * Neutral
-     * sys/color/On Surface         #333333  一级文字
-     * sys/color/On Surface Variant #666666  二级文字
-     * sys/color/Surface Variant    #999999  三级文字
-     * sys/color/Surface Hint       #BEBEBE  占位符
-     * sys/color/Outline            #DBDBDB  边框
-     * sys/color/Outline Variant    #E7E7E7  分割线
-     * sys/color/Surface            #F8F8F8  页面背景
-     * sys/color/Surface Bright     #FFFFFF  容器背景
-     *
-     * Layout (web px)
-     * layout/Spacing S/M/L/XL → 8/16/24/32
-     * layout/Card Padding Medium → 24
-     *
-     * Shape
-     * sys/shape/Surface Card  → 16px
-     * sys/shape/Component Std →  4px
-     * sys/shape/Button Medium → 16px
-     * ─────────────────────────────────────────────────── */
+    /* ── sys/color ── */
+    --c-primary:            #1890FF;   /* sys/color/Primary */
+    --c-outline-primary:    #8BC7FF;   /* sys/color/Outline-Primary */
+    --c-primary-container:  #F6FBFF;   /* sys/color/Primary Container */
+    --c-success:            #00C332;   /* sys/color/Success */
+    --c-success-container:  #E5F9E9;   /* sys/color/Success Container */
+    --c-error:              #F02525;   /* sys/color/Error */
+    --c-error-container:    #FEE8E6;   /* sys/color/Error Container */
+    --c-text-1:             #333333;   /* sys/color/On Surface */
+    --c-text-2:             #666666;   /* sys/color/On Surface Variant */
+    --c-text-3:             #999999;   /* sys/color/Surface Variant */
+    --c-text-hint:          #BEBEBE;   /* sys/color/Surface Hint */
+    --c-border:             #DBDBDB;   /* sys/color/Outline */
+    --c-divider:            #E7E7E7;   /* sys/color/Outline Variant */
+    --c-surface:            #F8F8F8;   /* sys/color/Surface */
+    --c-surface-bright:     #FFFFFF;   /* sys/color/Surface Bright */
 
-    /* Brand */
-    --c-primary:           #1890FF;
-    --c-outline-primary:   #8BC7FF;
-    --c-primary-container: #F6FBFF;
+    /* ── sys/shape ── */
+    --r-surface-main:  32px;   /* sys/shape/Surface Main */
+    --r-surface-modal: 24px;   /* sys/shape/Surface Modal */
+    --r-surface-card:  16px;   /* sys/shape/Surface Card */
+    --r-surface-float:  8px;   /* sys/shape/Surface Float */
+    --r-component:      4px;   /* sys/shape/Component Standard */
+    --r-button-lg:     24px;   /* sys/shape/Button Large */
+    --r-button-md:     16px;   /* sys/shape/Button Medium */
+    --r-button-sm:      8px;   /* sys/shape/Button Small */
 
-    /* Functional */
-    --c-success:           #00C332;
-    --c-success-container: #E5F9E9;
-    --c-error:             #F02525;
-    --c-error-container:   #FEE8E6;
-
-    /* Neutral */
-    --c-text-1:       #333333;
-    --c-text-2:       #666666;
-    --c-text-3:       #999999;
-    --c-text-hint:    #BEBEBE;
-    --c-border:       #DBDBDB;
-    --c-divider:      #E7E7E7;
-    --c-surface:      #F8F8F8;
-    --c-surface-bright: #FFFFFF;
-
-    /* Shape */
-    --r-card:      16px;   /* sys/shape/Surface Card  */
-    --r-component:  4px;   /* sys/shape/Component Standard */
-    --r-button:    16px;   /* sys/shape/Button Medium */
-
-    /* Shadow (LITTA B端 标准) */
+    /* ── shadow ── */
     --shadow-card: 0 1px 2px rgba(0,0,0,0.04), 0 2px 8px rgba(0,0,0,0.03);
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
-    font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Helvetica Neue', sans-serif;
+    /* Brand 字体: PingFang SC */
+    font-family: 'PingFang SC', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
     background: #e2e4ea;
     display: flex; justify-content: center; align-items: center;
     min-height: 100vh; padding: 40px 20px;
@@ -100,7 +84,8 @@
   .bar {
     height: 58px; padding: 14px 30px 0;
     display: flex; justify-content: space-between;
-    font-size: 14px; font-weight: 600; color: var(--c-text-1);
+    /* 20px — Label Small */
+    font-size: 20px; font-weight: 600; color: var(--c-text-1);
   }
   .bat {
     width: 25px; height: 12px;
@@ -115,6 +100,7 @@
   .bat-f { width: 70%; height: 100%; background: var(--c-text-1); border-radius: 1px; }
 
   /* ── Content Area ── */
+  /* layout/Page Margin = 32px → 手机端取 20px */
   .ct {
     height: calc(100% - 58px);
     overflow-y: auto;
@@ -124,21 +110,30 @@
   }
   .ct::-webkit-scrollbar { display: none; }
 
-  /* ── Header ── */
-  .hd { padding: 8px 0 12px; }
+  /* ══════════════════════════════════════
+   * HEADER — 页面标题
+   * Token: Title Large  32px / 44 / 48
+   * ══════════════════════════════════════ */
+  .hd { padding: 8px 0 16px; }
   .hd h1 {
-    font-size: 20px; font-weight: 600;
-    color: var(--c-text-1);                /* sys/color/On Surface */
+    font-size: 32px;                         /* Title Large */
+    line-height: 44px;                       /* Title Large 单行行高 */
+    font-weight: 600;
+    color: var(--c-text-1);                  /* sys/color/On Surface */
   }
 
-  /* ── Stats Row ── */
+  /* ══════════════════════════════════════
+   * STATS ROW — 统计栏
+   * 数字: Number Body Large  28px / 38 / 42
+   * 标签: Label Small        20px / 28 / 30
+   * ══════════════════════════════════════ */
   .stats {
     display: flex;
-    background: var(--c-surface-bright);   /* sys/color/Surface Bright */
-    border-radius: var(--r-card);          /* sys/shape/Surface Card 16px */
+    background: var(--c-surface-bright);     /* sys/color/Surface Bright */
+    border-radius: var(--r-surface-card);    /* 16px */
     box-shadow: var(--shadow-card);
-    padding: 12px 0;
-    margin-bottom: 12px;                   /* ≈ Spacing S */
+    padding: 16px 0;
+    margin-bottom: 16px;                     /* layout/Spacing M */
   }
   .st {
     flex: 1; text-align: center; position: relative;
@@ -146,162 +141,224 @@
   }
   .st:active { transform: scale(0.95); }
   .st:not(:last-child)::after {
-    content: ''; position: absolute; right: 0; top: 2px; bottom: 2px;
-    width: 1px; background: var(--c-divider);  /* sys/color/Outline Variant */
+    content: ''; position: absolute; right: 0; top: 4px; bottom: 4px;
+    width: 1px; background: var(--c-divider);
   }
   .st .n {
-    font-size: 28px; font-weight: 600;
+    font-size: 28px;                         /* Number Body Large */
+    line-height: 38px;                       /* Number Body Large 单行行高 */
+    font-weight: 600;
     color: var(--c-text-1);
   }
-  .st .n.g { color: var(--c-success); }       /* sys/color/Success */
+  .st .n.g { color: var(--c-success); }      /* sys/color/Success */
   .st .l {
-    font-size: 12px;
-    color: var(--c-text-3);                   /* sys/color/Surface Variant */
-    margin-top: 2px;
+    font-size: 20px;                         /* Label Small */
+    line-height: 28px;                       /* Label Small 单行行高 */
+    color: var(--c-text-3);                  /* sys/color/Surface Variant */
+    margin-top: 4px;                         /* layout/Spacing XS */
   }
 
-  /* ── Hero Card (待激活提示) ── */
+  /* ══════════════════════════════════════
+   * HERO CARD — 待激活提示
+   * 数字: Number Headline Medium  36px / 50 / 54
+   * 文字: Body Medium           24px / 34 / 36
+   * 注释: Label Small           20px / 28 / 30
+   * ══════════════════════════════════════ */
   .hero {
-    background: var(--c-primary);          /* sys/color/Primary #1890FF */
-    border-radius: var(--r-card);          /* 16px */
-    padding: 16px 20px 14px;
-    margin-bottom: 16px;                   /* Spacing M */
-    color: #FFFFFF;                        /* sys/color/On Primary */
+    background: var(--c-primary);            /* sys/color/Primary */
+    border-radius: var(--r-surface-card);    /* 16px */
+    padding: 24px;                           /* layout/Card Padding Medium */
+    margin-bottom: 16px;                     /* layout/Spacing M */
+    color: #FFFFFF;                          /* sys/color/On Primary */
     box-shadow: 0 2px 4px rgba(24,144,255,0.15), 0 4px 10px rgba(24,144,255,0.1);
     cursor: pointer; transition: transform 0.1s ease; user-select: none;
   }
   .hero:active { transform: scale(0.97); }
-  .hero-main { display: flex; align-items: baseline; gap: 6px; }
+  .hero-main { display: flex; align-items: baseline; gap: 8px; }
   .hero-num {
-    font-size: 36px; font-weight: 700; line-height: 1;
+    font-size: 36px;                         /* Number Headline Medium */
+    line-height: 50px;                       /* Number Headline Medium 单行行高 */
+    font-weight: 700;
   }
-  .hero-lbl { font-size: 14px; font-weight: 500; opacity: 0.9; }
+  .hero-lbl {
+    font-size: 24px;                         /* Body Medium */
+    line-height: 34px;                       /* Body Medium 单行行高 */
+    font-weight: 500;
+    opacity: 0.9;
+  }
   .hero-note {
-    font-size: 12px; font-weight: 400; opacity: 0.5;
-    margin-top: 8px;                       /* Spacing S */
+    font-size: 20px;                         /* Label Small */
+    line-height: 28px;                       /* Label Small 多行行高 */
+    font-weight: 400;
+    opacity: 0.5;
+    margin-top: 8px;                         /* layout/Spacing S */
     padding-top: 8px;
     border-top: 1px solid rgba(255,255,255,0.15);
   }
 
-  /* ── Filter Tabs ── */
+  /* ══════════════════════════════════════
+   * FILTER TABS — 筛选标签
+   * Token: Body Medium  24px / 34 / 36
+   * Size: 24-Compact (24px font, V-Padding 8px)
+   * Shape: sys/shape/Button Medium  16px
+   * ══════════════════════════════════════ */
   .tabs {
     display: flex;
-    gap: 8px;                              /* Spacing S */
-    margin-bottom: 12px;
+    gap: 8px;                                /* layout/Spacing S */
+    margin-bottom: 16px;                     /* layout/Spacing M */
   }
   .tab {
-    padding: 8px 16px;                     /* V: S, H: M */
-    border-radius: var(--r-button);        /* sys/shape/Button Medium 16px */
-    font-size: 14px; font-weight: 600;
+    padding: 8px 16px;                       /* 24-Compact: V=8px, H=Spacing M */
+    border-radius: var(--r-button-md);       /* sys/shape/Button Medium 16px */
+    font-size: 24px;                         /* Body Medium */
+    line-height: 34px;                       /* Body Medium 单行行高 */
+    font-weight: 600;
     cursor: pointer; border: none;
     background: var(--c-surface-bright);
-    color: var(--c-text-2);                /* On Surface Variant */
+    color: var(--c-text-2);                  /* sys/color/On Surface Variant */
     transition: all 0.15s ease;
   }
   .tab:active { transform: scale(0.97); }
   .tab.on {
-    background: var(--c-primary-container); /* #F6FBFF */
-    color: var(--c-primary);               /* #1890FF */
+    background: var(--c-primary-container);  /* sys/color/Primary Container #F6FBFF */
+    color: var(--c-primary);                 /* sys/color/Primary #1890FF */
   }
 
-  /* ── Card List ── */
+  /* ══════════════════════════════════════
+   * CARD LIST
+   * ══════════════════════════════════════ */
   .list {
     display: flex; flex-direction: column;
     gap: 12px;
   }
 
-  /* ── Card Row ── */
+  /* ══════════════════════════════════════
+   * CARD ROW — 单条记录
+   * 时间/手机: Label Small  20px / 28 / 30
+   * 卡型:     Label Small  20px / 28 / 30
+   * 金额:     Number Body Medium  24px / 34 / 36
+   * 金额小数: Number Body Small   20px / 28 / 30
+   * 标签:     Label Small  20px / 28 / 30
+   * ══════════════════════════════════════ */
   .row {
     background: var(--c-surface-bright);
-    border-radius: var(--r-card);          /* 16px */
-    padding: 14px 16px;                    /* Card Padding Medium 区域 */
+    border-radius: var(--r-surface-card);    /* 16px */
+    padding: 16px 24px;                      /* V: Spacing M, H: Card Padding Medium */
     box-shadow: var(--shadow-card);
     transition: transform 0.1s ease;
   }
   .row:active { transform: scale(0.98); }
 
   .r-top {
-    display: flex; align-items: center; gap: 12px;
-    margin-bottom: 10px;
+    display: flex; align-items: center; gap: 8px;
+    margin-bottom: 8px;                      /* layout/Spacing S */
   }
   .r-time {
-    font-size: 12px; font-weight: 500;
+    font-size: 20px;                         /* Label Small */
+    line-height: 28px;                       /* Label Small 单行行高 */
+    font-weight: 500;
     color: var(--c-text-1);
     font-family: 'SF Mono', 'Menlo', monospace;
-    min-width: 72px; flex-shrink: 0;
+    flex-shrink: 0;
   }
   .r-phone {
-    flex: 1; font-size: 16px; font-weight: 500;
-    color: var(--c-text-1); letter-spacing: 0.3px;
+    flex: 1;
+    font-size: 20px;                         /* Label Small */
+    line-height: 28px;
+    font-weight: 500;
+    color: var(--c-text-1);
+    letter-spacing: 0.3px;
   }
+
   .r-bot { display: flex; align-items: center; gap: 8px; }
 
-  /* Card Type Tag */
+  /* Card Type Tag — 年卡/月卡 */
   .r-card-type {
-    font-size: 12px; font-weight: 600;
+    font-size: 20px;                         /* Label Small */
+    line-height: 28px;
+    font-weight: 600;
     color: var(--c-text-2);
-    background: var(--c-surface);          /* sys/color/Surface #F8F8F8 */
-    border-radius: var(--r-component);     /* 4px */
-    padding: 3px 8px; flex-shrink: 0;
+    background: var(--c-surface);            /* sys/color/Surface */
+    border-radius: var(--r-component);       /* 4px */
+    padding: 2px 8px;
+    flex-shrink: 0;
   }
   .r-card-type.annual {
-    color: var(--c-primary);               /* #1890FF */
-    background: var(--c-primary-container);/* #F6FBFF */
+    color: var(--c-primary);
+    background: var(--c-primary-container);  /* #F6FBFF */
   }
   .r-card-type.monthly {
-    color: var(--c-outline-primary);       /* #8BC7FF */
-    background: var(--c-primary-container);/* #F6FBFF */
+    color: var(--c-outline-primary);         /* #8BC7FF */
+    background: var(--c-primary-container);
   }
 
-  /* Amount */
+  /* Amount — 金额 */
   .r-amount {
-    font-size: 14px; font-weight: 600;
-    color: var(--c-text-1); flex: 1;
+    font-size: 24px;                         /* Number Body Medium */
+    line-height: 34px;
+    font-weight: 600;
+    color: var(--c-text-1);
+    flex: 1;
   }
   .r-amount .unit {
-    font-size: 12px; font-weight: 500;
-    color: var(--c-text-3); margin-left: 1px;
+    font-size: 20px;                         /* Number Body Small */
+    line-height: 28px;
+    font-weight: 500;
+    color: var(--c-text-3);
+    margin-left: 1px;
   }
 
-  /* Status Tag */
+  /* Status Tag — 状态标签 */
   .r-tag {
-    padding: 4px 10px;
-    border-radius: var(--r-component);     /* 4px */
-    font-size: 12px; font-weight: 600; flex-shrink: 0;
+    padding: 2px 8px;
+    border-radius: var(--r-component);       /* 4px */
+    font-size: 20px;                         /* Label Small */
+    line-height: 28px;
+    font-weight: 600;
+    flex-shrink: 0;
   }
   .r-tag.pd {
-    background: var(--c-primary-container); /* #F6FBFF */
-    color: var(--c-primary);               /* #1890FF */
+    background: var(--c-primary-container);  /* #F6FBFF */
+    color: var(--c-primary);                 /* #1890FF */
   }
   .r-tag.ac {
-    background: var(--c-success-container); /* #E5F9E9 */
-    color: var(--c-success);               /* #00C332 */
+    background: var(--c-success-container);  /* #E5F9E9 */
+    color: var(--c-success);                 /* #00C332 */
   }
   .r-tag.rf {
-    background: var(--c-error-container);  /* #FEE8E6 */
-    color: var(--c-error);                 /* #F02525 */
+    background: var(--c-error-container);    /* #FEE8E6 */
+    color: var(--c-error);                   /* #F02525 */
   }
 
-  /* ── Footer ── */
+  /* ══════════════════════════════════════
+   * FOOTER
+   * Token: Label Small  20px / 28 / 30
+   * ══════════════════════════════════════ */
   .foot {
     text-align: center;
-    font-size: 12px;
-    color: var(--c-text-hint);            /* #BEBEBE */
+    font-size: 20px;                         /* Label Small */
+    line-height: 28px;
+    color: var(--c-text-hint);              /* #BEBEBE */
     padding: 16px 0 8px;
   }
 
-  /* ── Note ── */
+  /* ══════════════════════════════════════
+   * NOTE — 特殊说明
+   * Token: Label Small  20px / 28 / 30 (多行行高 30)
+   * ══════════════════════════════════════ */
   .note {
-    margin: 12px 0 0;
-    padding: 12px 14px;
+    margin: 16px 0 0;
+    padding: 16px 24px;                      /* Card Padding Medium */
     background: var(--c-surface-bright);
-    border-radius: var(--r-component);     /* 4px */
-    font-size: 12px; line-height: 1.6;
+    border-radius: var(--r-component);       /* 4px */
+    font-size: 20px;                         /* Label Small */
+    line-height: 30px;                       /* Label Small 多行行高 */
     color: var(--c-text-3);
-    border: 1px solid var(--c-divider);    /* #E7E7E7 */
+    border: 1px solid var(--c-divider);
   }
   .note strong {
-    color: var(--c-text-2); font-weight: 600;
+    color: var(--c-text-2);
+    font-weight: 600;
   }
 </style>
 </head>

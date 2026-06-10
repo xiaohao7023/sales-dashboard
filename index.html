@@ -5,42 +5,51 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>活力go分销看板</title>
 <style>
+  /* ══════════════════════════════════════════════════════════
+   * LITTA B端 Design Token — 强制约束
+   *
+   * Typography 只允许 6 个字号:
+   *   40px  Headline Large / Number Headline Large
+   *   36px  Headline Medium / Number Headline Medium
+   *   32px  Title Large / Number Title Large
+   *   28px  Body Large / Number Body Large
+   *   24px  Body Medium / Number Body Medium
+   *   20px  Label Small / Number Body Small
+   *
+   * 禁止使用以上 6 个值以外的字号。
+   * ══════════════════════════════════════════════════════════ */
+
   :root {
-    /* ── LITTA B端 Design Token ── */
-    /* Brand */
-    --c-primary:           #1890FF;
-    --c-outline-primary:   #8BC7FF;
-    --c-primary-container: #F6FBFF;
+    /* ── sys/color ── */
+    --c-primary:            #1890FF;
+    --c-outline-primary:    #8BC7FF;
+    --c-primary-container:  #F6FBFF;
+    --c-success:            #00C332;
+    --c-success-container:  #E5F9E9;
+    --c-error:              #F02525;
+    --c-error-container:    #FEE8E6;
+    --c-text-1:             #333333;   /* On Surface */
+    --c-text-2:             #666666;   /* On Surface Variant */
+    --c-text-3:             #999999;   /* Surface Variant */
+    --c-text-hint:          #BEBEBE;   /* Surface Hint */
+    --c-border:             #DBDBDB;   /* Outline */
+    --c-divider:            #E7E7E7;   /* Outline Variant */
+    --c-surface:            #F8F8F8;   /* Surface */
+    --c-surface-bright:     #FFFFFF;   /* Surface Bright */
 
-    /* Functional */
-    --c-success:           #00C332;
-    --c-success-container: #E5F9E9;
-    --c-error:             #F02525;
-    --c-error-container:   #FEE8E6;
+    /* ── sys/shape ── */
+    --r-surface-card:  16px;
+    --r-component:      4px;
+    --r-button-md:     16px;
 
-    /* Neutral */
-    --c-text-1:         #333333;   /* sys/color/On Surface */
-    --c-text-2:         #666666;   /* sys/color/On Surface Variant */
-    --c-text-3:         #999999;   /* sys/color/Surface Variant */
-    --c-text-hint:      #BEBEBE;   /* sys/color/Surface Hint */
-    --c-border:         #DBDBDB;   /* sys/color/Outline */
-    --c-divider:        #E7E7E7;   /* sys/color/Outline Variant */
-    --c-surface:        #F8F8F8;   /* sys/color/Surface */
-    --c-surface-bright: #FFFFFF;   /* sys/color/Surface Bright */
-
-    /* Shape */
-    --r-card:      16px;           /* sys/shape/Surface Card */
-    --r-component:  4px;           /* sys/shape/Component Standard */
-    --r-button:    16px;           /* sys/shape/Button Medium */
-
-    /* Shadow */
+    /* ── shadow ── */
     --shadow-card: 0 1px 2px rgba(0,0,0,0.04), 0 2px 8px rgba(0,0,0,0.03);
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
-    font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Helvetica Neue', sans-serif;
+    font-family: 'PingFang SC', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
     background: #e2e4ea;
     display: flex; justify-content: center; align-items: center;
     min-height: 100vh; padding: 40px 20px;
@@ -69,7 +78,7 @@
   .bar {
     height: 58px; padding: 14px 30px 0;
     display: flex; justify-content: space-between;
-    font-size: 14px; font-weight: 600; color: var(--c-text-1);
+    font-size: 20px; font-weight: 600; color: var(--c-text-1);
   }
   .bat {
     width: 25px; height: 12px;
@@ -93,51 +102,64 @@
   }
   .ct::-webkit-scrollbar { display: none; }
 
-  /* ── Header ── */
+  /* ══════════════════════════════════════
+   * HEADER
+   * 标题: Title Large  32px / 44 / 48
+   * 副标题: Body Medium  24px / 34 / 36
+   * ══════════════════════════════════════ */
   .hd {
-    padding: 8px 0 12px;
+    padding: 8px 0 16px;
     display: flex; justify-content: space-between; align-items: flex-start;
   }
   .hd-left h1 {
-    font-size: 20px; font-weight: 600;
+    font-size: 32px;                         /* Title Large */
+    line-height: 44px;                       /* Title Large 单行行高 */
+    font-weight: 600;
     color: var(--c-text-1);
   }
   .hd-left p {
-    font-size: 14px;
+    font-size: 24px;                         /* Body Medium */
+    line-height: 34px;
     color: var(--c-text-2);
-    margin-top: 4px;                   /* Spacing XS */
+    margin-top: 4px;
   }
 
-  /* User badge */
+  /* ── User Badge ── */
   .hd-user {
-    display: flex; align-items: center; gap: 6px;
+    display: flex; align-items: center; gap: 8px;
     background: var(--c-surface-bright);
     border-radius: 20px;
-    padding: 6px 12px 6px 8px;
+    padding: 8px 16px 8px 8px;
     box-shadow: var(--shadow-card);
     margin-top: 4px;
     border: 1px solid var(--c-divider);
   }
   .hd-avatar {
-    width: 26px; height: 26px; border-radius: 50%;
+    width: 32px; height: 32px; border-radius: 50%;
     background: var(--c-primary);
-    color: #FFFFFF;                    /* sys/color/On Primary */
+    color: #FFFFFF;
     display: flex; align-items: center; justify-content: center;
-    font-size: 12px; font-weight: 600;
+    font-size: 20px; font-weight: 600;
   }
   .hd-name {
-    font-size: 14px; font-weight: 600;
+    font-size: 24px;                         /* Body Medium */
+    line-height: 34px;
+    font-weight: 600;
     color: var(--c-text-1);
   }
 
-  /* ── Stats Row ── */
+  /* ══════════════════════════════════════
+   * STATS ROW
+   * 数字: Number Body Large  28px / 38 / 42
+   * 标签: Label Small        20px / 28 / 30
+   * ══════════════════════════════════════ */
   .stats {
     display: flex;
     background: var(--c-surface-bright);
-    border-radius: var(--r-card);
+    border-radius: var(--r-surface-card);
     box-shadow: var(--shadow-card);
-    padding: 12px 0;
-    margin-bottom: 12px;
+    padding: 16px 0;
+    margin-bottom: 16px;
   }
   .st {
     flex: 1; text-align: center; position: relative;
@@ -145,51 +167,78 @@
   }
   .st:active { transform: scale(0.95); }
   .st:not(:last-child)::after {
-    content: ''; position: absolute; right: 0; top: 2px; bottom: 2px;
+    content: ''; position: absolute; right: 0; top: 4px; bottom: 4px;
     width: 1px; background: var(--c-divider);
   }
   .st .n {
-    font-size: 28px; font-weight: 600;
+    font-size: 28px;                         /* Number Body Large */
+    line-height: 38px;
+    font-weight: 600;
     color: var(--c-text-1);
   }
   .st .n.g { color: var(--c-success); }
   .st .l {
-    font-size: 12px;
+    font-size: 20px;                         /* Label Small */
+    line-height: 28px;
     color: var(--c-text-3);
-    margin-top: 2px;
+    margin-top: 4px;
   }
 
-  /* ── Hero Card ── */
+  /* ══════════════════════════════════════
+   * HERO CARD
+   * 数字: Number Headline Medium  36px / 50 / 54
+   * 文字: Body Medium           24px / 34 / 36
+   * 注释: Label Small           20px / 28 / 30
+   * ══════════════════════════════════════ */
   .hero {
     background: var(--c-primary);
-    border-radius: var(--r-card);
-    padding: 16px 20px 14px;
+    border-radius: var(--r-surface-card);
+    padding: 24px;
     margin-bottom: 16px;
     color: #FFFFFF;
     box-shadow: 0 2px 4px rgba(24,144,255,0.15), 0 4px 10px rgba(24,144,255,0.1);
     cursor: pointer; transition: transform 0.1s ease; user-select: none;
   }
   .hero:active { transform: scale(0.97); }
-  .hero-main { display: flex; align-items: baseline; gap: 6px; }
-  .hero-num { font-size: 36px; font-weight: 700; line-height: 1; }
-  .hero-lbl { font-size: 14px; font-weight: 500; opacity: 0.9; }
+  .hero-main { display: flex; align-items: baseline; gap: 8px; }
+  .hero-num {
+    font-size: 36px;                         /* Number Headline Medium */
+    line-height: 50px;
+    font-weight: 700;
+  }
+  .hero-lbl {
+    font-size: 24px;                         /* Body Medium */
+    line-height: 34px;
+    font-weight: 500;
+    opacity: 0.9;
+  }
   .hero-note {
-    font-size: 12px; font-weight: 400; opacity: 0.5;
+    font-size: 20px;                         /* Label Small */
+    line-height: 28px;
+    font-weight: 400;
+    opacity: 0.5;
     margin-top: 8px;
     padding-top: 8px;
     border-top: 1px solid rgba(255,255,255,0.15);
   }
 
-  /* ── Filter Tabs ── */
+  /* ══════════════════════════════════════
+   * FILTER TABS
+   * Token: Body Medium  24px / 34 / 36
+   * Size: 24-Compact (V-Padding 8px)
+   * Shape: sys/shape/Button Medium  16px
+   * ══════════════════════════════════════ */
   .tabs {
     display: flex;
     gap: 8px;
-    margin-bottom: 12px;
+    margin-bottom: 16px;
   }
   .tab {
     padding: 8px 16px;
-    border-radius: var(--r-button);
-    font-size: 14px; font-weight: 600;
+    border-radius: var(--r-button-md);
+    font-size: 24px;                         /* Body Medium */
+    line-height: 34px;
+    font-weight: 600;
     cursor: pointer; border: none;
     background: var(--c-surface-bright);
     color: var(--c-text-2);
@@ -201,15 +250,23 @@
     color: var(--c-primary);
   }
 
-  /* ── List ── */
+  /* ══════════════════════════════════════
+   * LIST
+   * ══════════════════════════════════════ */
   .list {
     display: flex; flex-direction: column;
     gap: 12px;
   }
+
+  /* ══════════════════════════════════════
+   * CARD ROW
+   * 时间/手机: Label Small       20px / 28 / 30
+   * 标签:     Label Small       20px / 28 / 30
+   * ══════════════════════════════════════ */
   .row {
     background: var(--c-surface-bright);
-    border-radius: var(--r-card);
-    padding: 16px;
+    border-radius: var(--r-surface-card);
+    padding: 16px 24px;
     box-shadow: var(--shadow-card);
     display: flex; align-items: center; gap: 12px;
     transition: transform 0.1s ease;
@@ -217,21 +274,30 @@
   .row:active { transform: scale(0.98); }
 
   .r-time {
-    font-size: 12px; font-weight: 500;
+    font-size: 20px;                         /* Label Small */
+    line-height: 28px;
+    font-weight: 500;
     color: var(--c-text-1);
     font-family: 'SF Mono', 'Menlo', monospace;
-    min-width: 72px; flex-shrink: 0;
+    flex-shrink: 0;
   }
   .r-phone {
-    flex: 1; font-size: 16px; font-weight: 500;
-    color: var(--c-text-1); letter-spacing: 0.3px;
+    flex: 1;
+    font-size: 20px;                         /* Label Small */
+    line-height: 28px;
+    font-weight: 500;
+    color: var(--c-text-1);
+    letter-spacing: 0.3px;
   }
 
   /* Status Tag */
   .r-tag {
-    padding: 4px 10px;
+    padding: 2px 8px;
     border-radius: var(--r-component);
-    font-size: 12px; font-weight: 600; flex-shrink: 0;
+    font-size: 20px;                         /* Label Small */
+    line-height: 28px;
+    font-weight: 600;
+    flex-shrink: 0;
   }
   .r-tag.pd {
     background: var(--c-primary-container);
@@ -246,10 +312,14 @@
     color: var(--c-error);
   }
 
-  /* ── Footer ── */
+  /* ══════════════════════════════════════
+   * FOOTER
+   * Token: Label Small  20px / 28 / 30
+   * ══════════════════════════════════════ */
   .foot {
     text-align: center;
-    font-size: 12px;
+    font-size: 20px;                         /* Label Small */
+    line-height: 28px;
     color: var(--c-text-hint);
     padding: 16px 0 8px;
   }
